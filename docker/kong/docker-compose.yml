@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  kong-migration:
+    image: kong:latest
+    command: "kong migrations bootstrap"
+    networks:
+      - kong-net
+    restart: on-failure
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_DATABASE=kong
+      - KONG_PG_PASSWORD=kong
+      - KONG_PG_HOST=sql-kong-database-1
+
+  kong:
+    image: kong:latest
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: 172.21.0.4
+      KONG_PG_PASSWORD: kong
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+      KONG_DNS_RESOLVER: 172.21.0.2:8600
+      KONG_DNS_ORDER: SRV,A,CNAME # 使用 CNAME 和 A 记录
+      KONG_LOG_LEVEL: debug
+    depends_on:
+      - kong-migration
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://kong:8001" ]
+      interval: 5s
+      timeout: 2s
+      retries: 15
+    ports:
+      - "8001:8001"
+      - "8000:8000"
+      - "8443:8443"
+  
+    
+  konga-prepare:
+    image: pantsel/konga:latest
+    command: "-c prepare -a postgres -u postgresql://kong:kong@sql-kong-database-1:5432/konga"
+    networks:
+      - kong-net
+    restart: on-failure
+    depends_on:
+      - kong
+
+  konga:
+    image: pantsel/konga:latest
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: sql-kong-database-1
+      DB_USER: kong
+      DB_DATABASE: konga
+      DB_PASSWORD: kong
+    depends_on:
+      - kong
+    ports:
+      - "1337:1337"
+
+networks:
+  kong-net:
+    external: true
+
+
+
+

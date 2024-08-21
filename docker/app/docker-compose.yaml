@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  gin-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - kong-net
+
+networks:
+  kong-net:
+    external: true

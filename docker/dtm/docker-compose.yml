@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dtm:
+    image: yedf/dtm
+    environment:
+      STORE_DRIVER: mysql
+      STORE_HOST: mysql-latest
+      STORE_USER: canal
+      STORE_PASSWORD: canal
+      STORE_PORT: 3306
+    ports:
+      - '36789:36789'
+      - '36790:36790'
+    networks:
+      - promexus_monitoring
+
+networks:
+  promexus_monitoring:
+    external: true

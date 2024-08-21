@@ -1,0 +1,120 @@
+2024-08-19 01:10:11.007 [main] WARN  o.s.context.support.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'instance' defined in class path resource [spring/file-instance.xml]: Cannot resolve reference to bean 'eventParser' while setting bean property 'eventParser'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'eventParser' defined in class path resource [spring/file-instance.xml]: Cannot create inner bean 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' of type [com.alibaba.otter.canal.parse.support.AuthenticationInfo] while setting bean property 'masterInfo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' defined in class path resource [spring/file-instance.xml]: Initialization of bean failed; nested exception is java.lang.RuntimeException: address[mysql-latest] is illegal, eg.127.0.0.1:3306
+2024-08-19 01:10:11.015 [main] ERROR c.a.o.canal.instance.spring.SpringCanalInstanceGenerator - generator instance failed.
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'instance' defined in class path resource [spring/file-instance.xml]: Cannot resolve reference to bean 'eventParser' while setting bean property 'eventParser'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'eventParser' defined in class path resource [spring/file-instance.xml]: Cannot create inner bean 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' of type [com.alibaba.otter.canal.parse.support.AuthenticationInfo] while setting bean property 'masterInfo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' defined in class path resource [spring/file-instance.xml]: Initialization of bean failed; nested exception is java.lang.RuntimeException: address[mysql-latest] is illegal, eg.127.0.0.1:3306
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:342)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1689)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:144)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:85)
+	at com.alibaba.otter.canal.instance.spring.SpringCanalInstanceGenerator.getBeanFactory(SpringCanalInstanceGenerator.java:47)
+	at com.alibaba.otter.canal.instance.spring.SpringCanalInstanceGenerator.generate(SpringCanalInstanceGenerator.java:30)
+	at com.alibaba.otter.canal.deployer.CanalController.lambda$initGlobalConfig$2(CanalController.java:385)
+	at com.alibaba.otter.canal.server.embedded.CanalServerWithEmbedded.lambda$start$0(CanalServerWithEmbedded.java:81)
+	at com.google.common.collect.MigrateMap$1.load(MigrateMap.java:23)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3708)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2416)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2299)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2212)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4147)
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4151)
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5140)
+	at com.google.common.collect.MigrateMap$MigrateConcurrentMap.get(MigrateMap.java:68)
+	at com.alibaba.otter.canal.server.embedded.CanalServerWithEmbedded.start(CanalServerWithEmbedded.java:130)
+	at com.alibaba.otter.canal.deployer.CanalController$1.processActiveEnter(CanalController.java:159)
+	at com.alibaba.otter.canal.common.zookeeper.running.ServerRunningMonitor.processActiveEnter(ServerRunningMonitor.java:247)
+	at com.alibaba.otter.canal.common.zookeeper.running.ServerRunningMonitor.start(ServerRunningMonitor.java:100)
+	at com.alibaba.otter.canal.deployer.CanalController.start(CanalController.java:538)
+	at com.alibaba.otter.canal.deployer.CanalStarter.start(CanalStarter.java:88)
+	at com.alibaba.otter.canal.deployer.CanalLauncher.main(CanalLauncher.java:124)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'eventParser' defined in class path resource [spring/file-instance.xml]: Cannot create inner bean 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' of type [com.alibaba.otter.canal.parse.support.AuthenticationInfo] while setting bean property 'masterInfo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' defined in class path resource [spring/file-instance.xml]: Initialization of bean failed; nested exception is java.lang.RuntimeException: address[mysql-latest] is illegal, eg.127.0.0.1:3306
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:389)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:127)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1689)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:330)
+	... 34 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.alibaba.otter.canal.parse.support.AuthenticationInfo#3e92efc3' defined in class path resource [spring/file-instance.xml]: Initialization of bean failed; nested exception is java.lang.RuntimeException: address[mysql-latest] is illegal, eg.127.0.0.1:3306
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:610)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:374)
+	... 44 common frames omitted
+Caused by: java.lang.RuntimeException: address[mysql-latest] is illegal, eg.127.0.0.1:3306
+	at com.alibaba.otter.canal.instance.spring.support.SocketAddressEditor.setAsText(SocketAddressEditor.java:20)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:429)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:402)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:155)
+	at org.springframework.beans.AbstractNestablePropertyAccessor.convertIfNecessary(AbstractNestablePropertyAccessor.java:590)
+	at org.springframework.beans.AbstractNestablePropertyAccessor.convertForProperty(AbstractNestablePropertyAccessor.java:609)
+	at org.springframework.beans.BeanWrapperImpl.convertForProperty(BeanWrapperImpl.java:219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.convertForProperty(AbstractAutowireCapableBeanFactory.java:1738)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1694)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	... 46 common frames omitted
+2024-08-19 01:14:14.985 [main] INFO  c.a.otter.canal.instance.spring.CanalInstanceWithSpring - start CannalInstance for 1-dtm_busi 
+2024-08-19 01:14:14.991 [main] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 01:14:14.991 [main] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table black filter : ^mysql\.slave_.*$
+2024-08-19 01:14:14.993 [main] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - start successful....
+2024-08-19 01:14:15.017 [destination = dtm_busi , address = mysql-latest/172.30.0.2:3306 , EventParser] WARN  c.a.o.c.p.inbound.mysql.rds.RdsBinlogEventParserProxy - ---> begin to find start position, it will be long time for reset or first position
+2024-08-19 01:14:15.017 [destination = dtm_busi , address = mysql-latest/172.30.0.2:3306 , EventParser] WARN  c.a.o.c.p.inbound.mysql.rds.RdsBinlogEventParserProxy - prepare to find start position just show master status
+2024-08-19 01:14:15.022 [destination = dtm_busi , address = mysql-latest/172.30.0.2:3306 , EventParser] WARN  c.a.o.c.p.inbound.mysql.rds.RdsBinlogEventParserProxy - ---> find start position successfully, EntryPosition[included=false,journalName=mysql-bin.000016,position=157,serverId=<null>,gtid=<null>,timestamp=<null>] cost : 1ms , the next step is binlog dump
+2024-08-19 01:15:14.396 [New I/O server worker #1-1] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 01:15:14.397 [New I/O server worker #1-1] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 01:36:57.079 [New I/O server worker #1-2] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 01:36:57.081 [New I/O server worker #1-2] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 01:37:28.260 [New I/O server worker #1-3] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 01:37:28.261 [New I/O server worker #1-3] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 01:51:22.771 [New I/O server worker #1-4] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 01:51:22.777 [New I/O server worker #1-4] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 02:05:05.276 [Thread-5] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - stop CannalInstance for null-dtm_busi 
+2024-08-19 02:05:06.118 [Thread-5] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - stop successful....
+2024-08-19 02:17:41.515 [main] INFO  c.a.otter.canal.instance.spring.CanalInstanceWithSpring - start CannalInstance for 1-dtm_busi 
+2024-08-19 02:17:41.521 [main] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:17:41.521 [main] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table black filter : ^mysql\.slave_.*$
+2024-08-19 02:17:41.549 [destination = dtm_busi , address = mysql-latest/172.30.0.2:3306 , EventParser] WARN  c.a.o.c.p.inbound.mysql.rds.RdsBinlogEventParserProxy - ---> begin to find start position, it will be long time for reset or first position
+2024-08-19 02:17:41.628 [main] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 02:17:41.628 [main] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 02:17:41.629 [main] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - start successful....
+2024-08-19 02:17:41.637 [destination = dtm_busi , address = mysql-latest/172.30.0.2:3306 , EventParser] WARN  c.a.o.c.p.inbound.mysql.rds.RdsBinlogEventParserProxy - prepare to find start position just last position
+ {"identity":{"slaveId":-1,"sourceAddress":{"address":"mysql-latest","port":3306}},"postion":{"gtid":"","included":false,"journalName":"mysql-bin.000016","position":90418,"serverId":1,"timestamp":1724032564000}}
+2024-08-19 02:17:41.643 [destination = dtm_busi , address = mysql-latest/172.30.0.2:3306 , EventParser] WARN  c.a.o.c.p.inbound.mysql.rds.RdsBinlogEventParserProxy - ---> find start position successfully, EntryPosition[included=false,journalName=mysql-bin.000016,position=90418,serverId=1,gtid=,timestamp=1724032564000] cost : 89ms , the next step is binlog dump
+2024-08-19 02:19:11.631 [New I/O server worker #1-1] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 02:19:11.632 [New I/O server worker #1-1] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 02:28:30.250 [New I/O server worker #1-2] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi\..*
+2024-08-19 02:28:30.251 [New I/O server worker #1-2] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi\..*$
+2024-08-19 02:29:55.276 [New I/O server worker #1-3] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to canal\\..*,dtm_busi.user_account
+2024-08-19 02:29:55.279 [New I/O server worker #1-3] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.user_account$|^canal\\..*$
+2024-08-19 02:30:22.402 [New I/O server worker #1-4] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to .*\..*
+2024-08-19 02:30:22.404 [New I/O server worker #1-4] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^.*\..*$
+2024-08-19 02:31:05.738 [New I/O server worker #1-5] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:31:05.740 [New I/O server worker #1-5] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:31:17.301 [New I/O server worker #1-6] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:31:17.301 [New I/O server worker #1-6] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:31:38.173 [New I/O server worker #1-7] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:31:38.174 [New I/O server worker #1-7] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:31:44.426 [New I/O server worker #1-8] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:31:44.426 [New I/O server worker #1-8] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:31:52.050 [New I/O server worker #1-9] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:31:52.051 [New I/O server worker #1-9] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:32:15.612 [New I/O server worker #1-10] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:32:15.614 [New I/O server worker #1-10] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 02:33:49.455 [New I/O server worker #1-11] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - subscribe filter change to dtm_busi.*
+2024-08-19 02:33:49.458 [New I/O server worker #1-11] WARN  c.a.o.canal.parse.inbound.mysql.dbsync.LogEventConvert - --> init table filter : ^dtm_busi.*$
+2024-08-19 03:53:32.958 [Thread-5] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - stop CannalInstance for null-dtm_busi 
+2024-08-19 03:53:32.974 [Thread-5] INFO  c.a.otter.canal.instance.core.AbstractCanalInstance - stop successful....

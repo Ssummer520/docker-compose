@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  kong-database:
+    image: postgres:9.6
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      POSTGRES_USER: kong
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: kong
+    ports:
+      - "5432:5432"
+
+networks:
+  kong-net:
+    external: true
+
+volumes:
+  consul-data:

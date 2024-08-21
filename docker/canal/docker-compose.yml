@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  canal-server:
+    image: canal/canal-server:latest
+    container_name: canal-server
+    ports:
+      - "11111:11111"
+      - "11112:11112"
+    environment:
+      - canal.auto.scan=false
+      - canal.destinations=dtm_busi
+      - canal.auto.scan.interval = 5
+      - canal.instance.master.address=mysql-latest:3306
+      # mysql 复制账号
+      - canal.instance.dbUsername=canal
+      - canal.instance.dbPassword=canal
+      - canal.instance.mysql.slaveId=222
+      - canal.instance.filter.regex=dtm_busi.*
+      - canal.instance.tsdb.enable=false 
+    volumes:
+      - ./canal.properties:/canal-server/conf/canal.properties
+      # - ./dtm_busi/instance.properties:/canal-server/conf/dtm_busi/instance.properties
+      - ./logs:/home/admin/canal-server/logs
+    networks:
+      - promexus_monitoring
+
+
+
+networks:
+  promexus_monitoring:
+    external: true
+
+volumes:
+  db_datadd:
+    driver: local

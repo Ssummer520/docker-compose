@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+
+  canal-admin:
+    image: canal/canal-admin:latest
+    networks:
+      - promexus_monitoring
+    ports:
+      - "8089:8089" # 修改为 Canal-Admin 服务实际需要的端口
+    volumes:
+      - ./application.yml:/canal-admin/config/application.yml
+networks:
+  promexus_monitoring:
+    external: true
+
+volumes:
+  canal-data:

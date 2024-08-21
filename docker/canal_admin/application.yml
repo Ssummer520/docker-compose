@@ -1,0 +1,21 @@
+canal_managerserver:
+  port: 8089
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+spring.datasource:
+  address:  mysql-latest:3306
+  database: canal_manager
+  username: canal
+  password: canal
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://mysql-latest:3306/canal_manager?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+  hikari:
+    maximum-pool-size: 30
+    minimum-idle: 1
+
+canal:
+  adminUser: admin
+  adminPasswd: 6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9
